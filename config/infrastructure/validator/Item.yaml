@@ -1,0 +1,23 @@
+App\Domain\Ship\Entity\Item:
+  properties:
+    title:
+      - NotBlank: ~
+      - Length:
+          min: 3
+          max: 255
+          minMessage: 'Title must be at least {{ limit }} characters'
+          maxMessage: 'Title cannot be more than {{ limit }} characters'
+
+    note:
+      - NotBlank: ~
+      - Length:
+          min: 1
+          max: 255
+          minMessage: 'Note must be at least {{ limit }} characters'
+          maxMessage: 'Note cannot be more than {{ limit }} characters'
+
+    quantity:
+      - NotBlank: ~
+
+    price:
+      - NotBlank: ~

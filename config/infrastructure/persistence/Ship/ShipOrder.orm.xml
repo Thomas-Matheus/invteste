@@ -1,0 +1,28 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="App\Domain\Ship\Entity\ShipOrder" table="ship_order" schema="shop">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <one-to-one field="personOrder" target-entity="App\Domain\Person\Entity\Person" fetch="EAGER">
+            <join-columns>
+                <join-column name="person_id" referenced-column-name="id" nullable="false" />
+            </join-columns>
+        </one-to-one>
+        <one-to-one field="shipTo" target-entity="App\Domain\Ship\Entity\ShipTo" fetch="EAGER">
+            <cascade>
+                <cascade-persist />
+            </cascade>
+            <join-columns>
+                <join-column name="ship_to_id" referenced-column-name="id" nullable="false" />
+            </join-columns>
+        </one-to-one>
+        <one-to-many field="items" target-entity="App\Domain\Ship\Entity\Item" mapped-by="shipOrder" fetch="EAGER">
+            <cascade>
+                <cascade-persist />
+            </cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>

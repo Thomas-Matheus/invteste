@@ -1,0 +1,9 @@
+App\Domain\Person\Entity\Person:
+  properties:
+    name:
+      - NotBlank: ~
+      - Length:
+          min: 3
+          max: 255
+          minMessage: 'Name must be at least {{ limit }} characters'
+          maxMessage: 'Name cannot be more than {{ limit }} characters'

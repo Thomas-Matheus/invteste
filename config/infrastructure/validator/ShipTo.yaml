@@ -1,0 +1,33 @@
+App\Domain\Ship\Entity\ShipTo:
+  properties:
+    name:
+      - NotBlank: ~
+      - Length:
+          min: 3
+          max: 255
+          minMessage: 'Name must be at least {{ limit }} characters'
+          maxMessage: 'Name cannot be more than {{ limit }} characters'
+
+    address:
+      - NotBlank: ~
+      - Length:
+          min: 1
+          max: 255
+          minMessage: 'Address must be at least {{ limit }} characters'
+          maxMessage: 'Address cannot be more than {{ limit }} characters'
+
+    city:
+      - NotBlank: ~
+      - Length:
+          min: 1
+          max: 255
+          minMessage: 'City must be at least {{ limit }} characters'
+          maxMessage: 'City cannot be more than {{ limit }} characters'
+
+    country:
+      - NotBlank: ~
+      - Length:
+          min: 1
+          max: 255
+          minMessage: 'Country must be at least {{ limit }} characters'
+          maxMessage: 'Country cannot be more than {{ limit }} characters'

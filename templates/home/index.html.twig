@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    {% for result, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            <div class="alert alert-{{ result }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+
+    <h2 class="text-center">Upload XML Files</h2>
+    <div class="lead">
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_row(form.shipOrders) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.people) }}
+        </div>
+        <hr class="my-4">
+
+        <p class="lead">
+            {{ form_end(form) }}
+        </p>
+    </div>
+{% endblock %}

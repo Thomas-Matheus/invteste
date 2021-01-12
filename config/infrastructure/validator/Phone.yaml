@@ -1,0 +1,9 @@
+App\Domain\Person\Entity\Phone:
+  properties:
+    number:
+      - NotBlank: ~
+      - Length:
+          min: 9
+          max: 15
+          minMessage: 'Phone number must be at least {{ limit }} characters'
+          maxMessage: 'Phone number be more than {{ limit }} characters'

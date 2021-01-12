@@ -1,0 +1,32 @@
+doctrine:
+    dbal:
+        url: '%env(resolve:DATABASE_URL)%'
+
+        # IMPORTANT: You MUST configure your server version,
+        # either here or in the DATABASE_URL env var (see .env file)
+        #server_version: '13'
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            AppDomainPerson:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/config/infrastructure/persistence/Person'
+                prefix: 'App\Domain\Person\Entity'
+                alias: AppDomainPerson
+
+            AppDomainShip:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/config/infrastructure/persistence/Ship'
+                prefix: 'App\Domain\Ship\Entity'
+                alias: AppDomainShip
+
+            AppDomainUser:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/config/infrastructure/persistence/User'
+                prefix: 'App\Domain\User\Entity'
+                alias: AppDomainUser

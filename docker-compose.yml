@@ -1,0 +1,50 @@
+version: "3.1"
+
+services:
+
+    postgres:
+      image: postgres:11.1-alpine
+      container_name: invtest-postgres
+      working_dir: /application
+      volumes:
+        - .:/application
+      environment:
+        - POSTGRES_USER=invtest
+        - POSTGRES_PASSWORD=udJvNpO6Xepl
+        - POSTGRES_DB=invtest_db
+      ports:
+        - "8084:5432"
+
+    webserver:
+      image: nginx:alpine
+      container_name: invtest-webserver
+      working_dir: /application
+      volumes:
+          - .:/application
+          - ./.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+        - "8080:80"
+
+    php-fpm:
+      build: .docker/php-fpm
+      container_name: invtest-php-fpm
+      working_dir: /application
+      volumes:
+        - .:/application
+        - ./.docker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+
+    rabbitmq:
+      image: rabbitmq:3.8.9-management
+      container_name: invtest-rabbitmq
+      hostname: rabbitmq-host
+      environment:
+        - RABBITMQ_ERLANG_COOKIE=kRk1QqNMx7Rd0N4xumup
+        - RABBITMQ_DEFAULT_USER=invtest
+        - RABBITMQ_DEFAULT_PASS=nu8LuVRqEWcA
+      volumes:
+        - ./.rabbitmq/:/var/lib/rabbitmq/mnesia/
+        - ./.rabbitmq/logs/:/var/log/rabbitmq/mnesia/
+      ports:
+        - "8085:5672"
+        - "8086:15672"
+
